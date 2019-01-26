@@ -49,9 +49,9 @@ app.get('/events/:idevent', function(req, resp) {
 
 app.post('/events', function(req, resp) {
     connection.query({
-        sql:'INSERT INTO events SET name = ?, date = ?,  description = ?, imgEvent = ?, price = ?,  validated = ?, IDuser = ?, reaction=?',
+        sql:'INSERT INTO events SET name = ?, date = ?,  description = ?, imgEvent = ?, price = ?,  validated = ?, IDuser = ?, reaction=?, hasliked=?',
         timeout: 40000,
-        values:[req.body.name, req.body.date, req.body.description, req.body.imgEvent, req.body.price, req.body.validated, req.body.IDuser, req.body.reaction]       
+        values:[req.body.name, req.body.date, req.body.description, req.body.imgEvent, req.body.price, req.body.validated, req.body.IDuser, req.body.reaction, req.body.hasliked]       
     }, function(error, rows, fields) {
         if (error) throw error;
         console.log('Successful POST quiery')
@@ -76,9 +76,9 @@ app.delete('/events/:idevent', function(req, resp) {
 
 app.put('/events/:idevent', function(req, resp) {
     connection.query({
-        sql:'UPDATE events SET name = ?, date = ?,  description = ?, imgEvent = ?, price = ?,  validated = ?, IDuser = ?, reaction=? WHERE idevent = ?',
+        sql:'UPDATE events SET name = ?, date = ?,  description = ?, imgEvent = ?, price = ?,  validated = ?, IDuser = ?, reaction=?, hasliked=? WHERE idevent = ?',
         timeout: 40000,
-        values:[req.body.name, req.body.date, req.body.description, req.body.imgEvent, req.body.price, req.body.validated, req.body.IDuser, req.body.reaction, req.params.idevent]   
+        values:[req.body.name, req.body.date, req.body.description, req.body.imgEvent, req.body.price, req.body.validated, req.body.IDuser, req.body.reaction, req.body.hasliked, req.params.idevent]   
     }, function(error, rows, fields) {
         console.log('Successful PUT quiery')
         resp.json(rows);
